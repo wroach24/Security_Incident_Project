@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NIST_Calibration_Sheet__Final.Properties" GeneratedClassName="ConnectionSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GasCheckTDLSConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=SQLSV800-002;Initial Catalog=""GasCheckTDLS"";Persist Security Info=True;User ID=Generic_mfg;Password=55555</Value>
+    </Setting>
+    <Setting Name="SapFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\\\svr300-003\\MFG\\Databases\\Orders\\0000-005671-0023.txt</Value>
+    </Setting>
+    <Setting Name="TotalResultLogPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\\\svr300-003\\MFG\\Databases\\LAD Newnan\\FIT_DATA\\Result_Data\\Result_Log</Value>
+    </Setting>
+    <Setting Name="QICSearchPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\\\svr300-003\\MFG\\Databases\\LAD Newnan\\FIT_DATA\\Result_Data\\Result_QIC\\TDLS8000</Value>
+    </Setting>
+    <Setting Name="ExcelFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\\\svr300-003\\MFG\\Databases\\LAD Newnan\\FIT_DATA\\Result_Data\\M1202JHZ911T1_TDLS8000 NIST Traceable Calibration Certificatej.xlsx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
