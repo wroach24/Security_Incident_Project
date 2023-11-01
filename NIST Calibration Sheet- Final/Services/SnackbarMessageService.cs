@@ -9,7 +9,7 @@ using Wpf.Ui.Common;
 using Wpf.Ui.Contracts;
 using Wpf.Ui.Controls;
 
-namespace NIST_Calibration_Sheet.Services;
+namespace Security_Response_Program.Services;
 
 public interface ISnackbarMessageService
 {

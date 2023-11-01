@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace NIST_Calibration_Sheet.Models
+namespace Security_Response_Program.Models
 {
     public partial class AmbientResult
     {

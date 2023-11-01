@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using NIST_Calibration_Sheet.Views.Windows;
 using Microsoft.Extensions.Hosting;
+using Security_Response_Program.Views.Windows;
 using Wpf.Ui.Controls;
 
 
-namespace NIST_Calibration_Sheet.Services.ApplicationServices;
+namespace Security_Response_Program.Services.ApplicationServices;
 
 /// <summary>
 /// Managed host of the application.

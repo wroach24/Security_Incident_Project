@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NIST_Calibration_Sheet.Views.Pages
+namespace Security_Response_Program.Views.Pages
 {
     /// <summary>
     /// Interaction logic for SamplePage.xaml

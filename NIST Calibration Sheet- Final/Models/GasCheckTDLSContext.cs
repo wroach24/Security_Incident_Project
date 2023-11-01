@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace NIST_Calibration_Sheet.Models
+namespace Security_Response_Program.Models
 {
     public partial class GasCheckTDLSContext : DbContext
     {

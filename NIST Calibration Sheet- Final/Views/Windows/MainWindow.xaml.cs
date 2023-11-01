@@ -2,13 +2,13 @@ using System;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-using NIST_Calibration_Sheet.Views.Pages;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Wpf.Ui.Contracts;
 using Wpf.Ui.Controls;
-using NIST_Calibration_Sheet.ViewModels;
+using Security_Response_Program.ViewModels;
+using Security_Response_Program.Views.Pages;
 
-namespace NIST_Calibration_Sheet.Views.Windows
+namespace Security_Response_Program.Views.Windows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

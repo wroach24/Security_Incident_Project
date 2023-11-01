@@ -14,10 +14,10 @@ using MenuItem = Wpf.Ui.Controls.MenuItem;
 using Thickness = System.Windows.Thickness;
 using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
-using NIST_Calibration_Sheet.Services;
 using NIST_Calibration_Sheet__Final.Properties;
+using Security_Response_Program.Services;
 
-namespace NIST_Calibration_Sheet.ViewModels
+namespace Security_Response_Program.ViewModels
 {
     public partial class MainWindowViewModel : ObservableObject
     {

@@ -12,9 +12,9 @@ using Wpf.Ui.Controls;
 using Application = System.Windows.Application;
 using Wpf.Ui.Contracts;
 using System.Diagnostics;
-using NIST_Calibration_Sheet.Services;
+using Security_Response_Program.Services;
 
-namespace NIST_Calibration_Sheet.ViewModels
+namespace Security_Response_Program.ViewModels
 {
     public partial class HomePageViewModel : ObservableObject, INavigationAware
     {
