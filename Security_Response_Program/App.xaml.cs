@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Office.Interop.Excel;
-using NIST_Calibration_Sheet__Final.Properties;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -81,10 +80,6 @@ namespace Security_Response_Program
             // App Host
             services.AddHostedService<ApplicationHostService>();
 
-            // Register the factory method for creating DOAContext
-            services.AddDbContextFactory<GasCheckTDLSContext>(options =>
-                options.UseSqlServer(ConnectionSettings.Default.GasCheckTDLSConnectionString));
-
             // Theme manipulation
             services.AddSingleton<IThemeService, ThemeService>();
 
@@ -102,8 +97,7 @@ namespace Security_Response_Program
             // Views and ViewModels
             services.AddScoped<MainPage>();
             services.AddScoped<HomePageViewModel>();
-            services.AddScoped<SamplePage>();
-            services.AddScoped<SamplePage2>();
+            services.AddScoped<HomePage>();
 
 
         }

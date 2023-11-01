@@ -18,9 +18,9 @@ namespace Security_Response_Program.Views.Pages
     /// <summary>
     /// Interaction logic for SamplePage2.xaml
     /// </summary>
-    public partial class SamplePage2 : Page
+    public partial class HomePage : Page
     {
-        public SamplePage2()
+        public HomePage()
         {
             InitializeComponent();
         }

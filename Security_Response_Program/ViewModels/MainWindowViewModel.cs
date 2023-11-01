@@ -14,7 +14,6 @@ using MenuItem = Wpf.Ui.Controls.MenuItem;
 using Thickness = System.Windows.Thickness;
 using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
-using NIST_Calibration_Sheet__Final.Properties;
 using Security_Response_Program.Services;
 
 namespace Security_Response_Program.ViewModels
@@ -66,23 +65,16 @@ namespace Security_Response_Program.ViewModels
                         Content = "Incident Entry",
                         Tag = "doa",
                         Icon =  new SymbolIcon(SymbolRegular.BookDatabase20),
-                        TargetPageType = typeof(Views.Pages.SamplePage)
+                        TargetPageType = typeof(Views.Pages.IncidentResponsePage)
                     },
                     new NavigationViewItem()
                     {
                         Content = "Past Incidents",
                         Tag = "search",
                         Icon =  new SymbolIcon(SymbolRegular.Search28),
-                        TargetPageType = typeof(Views.Pages.SamplePage2)
+                        TargetPageType = typeof(Views.Pages.HomePage)
                     },
 
-                    new NavigationViewItem()
-                    {
-                        Content = "Sample Page",
-                        Tag = "file",
-                        Icon =  new SymbolIcon(SymbolRegular.Folder16),
-                        TargetPageType = typeof(Views.Pages.SamplePage)
-                    },
                     //new NavigationViewItem()
                     //{
                     //    Content = "DOA Charts",
