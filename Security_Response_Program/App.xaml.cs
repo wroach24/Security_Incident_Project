@@ -14,7 +14,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using Security_Response_Program.Models;
 using Security_Response_Program.Services;
 using Security_Response_Program.Services.ApplicationServices;
 using Security_Response_Program.ViewModels;

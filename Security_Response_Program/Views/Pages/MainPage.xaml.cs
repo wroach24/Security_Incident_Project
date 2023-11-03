@@ -29,26 +29,28 @@ using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 
 using OfficeOpenXml;
+using Security_Response_Program.ViewModels;
+using Wpf.Ui.Controls;
 using LicenseContext = OfficeOpenXml.LicenseContext;
-using Security_Response_Program.Models;
-using Microsoft.Data.SqlClient;
 
 namespace Security_Response_Program.Views.Pages
 {
     /// <summary>
     /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class MainPage
+    public partial class MainPage : INavigableView<HomePageViewModel>
     {
-        public MainPage()
+        public MainPage(HomePageViewModel viewModel)
         {
+            ViewModel = viewModel;
+            DataContext = ViewModel;
             InitializeComponent();
         }
 
-
-        
-
-
+        public HomePageViewModel ViewModel
+        {
+            get;
+        }
     }
 }
 

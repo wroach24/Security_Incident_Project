@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Security_Response_Program"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:viewModels="clr-namespace:Security_Response_Program.ViewModels"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:HomePageViewModel,
+                            IsDesignTimeCreatable=False}"
         Title="Auto Filled NIST Calibration Sheeet" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
     <ContentControl>
         <!-- Add Grid to center-align the inner content -->

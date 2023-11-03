@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,11 +36,36 @@ namespace Security_Response_Program.ViewModels
 
 
 
-      
+
         public async void OnNavigatedTo()
         {
-        
+            // Get the directory where the executable is located.
+            var exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            // Build the path to the database file within that directory.
+            var dbPath = System.IO.Path.Combine(exeDirectory, "IncidentDatabase.db");
+            // Create the connection string.
+            var connectionString = $"Data Source={dbPath};Version=3;";
+
+            try
+            {
+                using (var connection = new SQLiteConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    System.Windows.MessageBox.Show("Connection Successful");
+                    await connection.CloseAsync();
+                }
+
+                // Connection successful
+                // Proceed with any other operations you need to perform on navigation.
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions here, such as logging the error or informing the user.
+                System.Windows.MessageBox.Show($"An error occurred while trying to open the SQLite connection: {ex.Message}");
+            }
         }
+
 
         public void OnNavigatedFrom()
         {
