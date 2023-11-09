@@ -1,0 +1,114 @@
+﻿<Page x:Class="Security_Response_Program.Views.Pages.IncidentResponsePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:viewModels="clr-namespace:Security_Response_Program.ViewModels"
+      mc:Ignorable="d" 
+      Title="Incident Response" HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch"    
+      d:DataContext="{d:DesignInstance viewModels:IncidentResponseViewModel,
+                        IsDesignTimeCreatable=False}" >
+
+    <ui:DynamicScrollViewer VerticalScrollBarVisibility="Visible"
+                HorizontalScrollBarVisibility="Disabled"
+                Name="scrollViewer" MaxWidth="1600" >
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"  />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Incident Identification -->
+            <ui:CardExpander Icon="{ui:SymbolIcon InfoShield20}" Grid.Row="0" Margin="5" Header="Incident Identification" FontSize="20" IsExpanded="True">
+                <WrapPanel Grid.Row="1" Margin="10,15,10,10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0">
+                    <StackPanel Margin="10,0,10,10">
+                        <Label FontSize="14" Content="Incident Date" />
+                        <DatePicker Name="IncidentDatePicker" SelectedDate="{Binding IncidentDate}" SelectedDateFormat="Short" MinWidth="115" />
+                    </StackPanel>
+                    <StackPanel Margin="10,0,10,10">
+                        <Label FontSize="14" Content="Incident Type" FontWeight="SemiBold"/>
+                        <ComboBox SelectedItem="{Binding IncidentType}" ItemsSource="{Binding IncidentTypes}" Height="38" DisplayMemberPath="IncidentType" MinWidth="215" />
+                    </StackPanel>
+                    <StackPanel Margin="10,0,10,10">
+                        <Label FontSize="14" Content="Incident Location" FontWeight="SemiBold" />
+                        <ui:TextBox MinWidth="300" Text="{Binding IncidentLocation}" />
+                    </StackPanel>
+                    <StackPanel Margin="10,0,10,10">
+                        <Label FontSize="14" Content="Incident Description" FontWeight="SemiBold" />
+                        <ui:TextBox TextWrapping="Wrap" Text="{Binding IncidentDescription}" VerticalScrollBarVisibility="Visible" MinWidth="450" MaxWidth="800" Width="609" MinLines="2" />
+                    </StackPanel>
+                    <StackPanel Margin="10,0,10,10">
+                        <Label FontSize="14" Content="Incident Severity" FontWeight="SemiBold"/>
+                        <ComboBox SelectedItem="{Binding IncidentSeverity}" ItemsSource="{Binding IncidentSeverities}" Height="38" DisplayMemberPath="IncidentSeverity" MinWidth="215" />
+                    </StackPanel>
+                    <StackPanel Margin="10,0,10,10">
+                        <Label FontSize="14" Content="Incident Status" FontWeight="SemiBold"/>
+                        <ComboBox SelectedItem="{Binding IncidentStatus}" ItemsSource="{Binding IncidentStatuses}" Height="38" DisplayMemberPath="IncidentStatus" MinWidth="215" />
+                    </StackPanel>
+                    <StackPanel Margin="10,0,10,10"/>
+                    <StackPanel Margin="10,0,10,10">
+                        <Label FontSize="14" Content="Incident Assignee" FontWeight="SemiBold"/>
+                        <ui:TextBox Text="{Binding IncidentAssignee}" MinWidth="290" />
+                    </StackPanel>
+                    <StackPanel Margin="10,0,10,10"/>
+                </WrapPanel>
+            </ui:CardExpander>
+
+            <!-- Affected Systems -->
+            <ui:CardExpander Icon="{ui:SymbolIcon NetworkAdapter16}" Grid.Row="1" Margin="5" Header="Affected System" FontSize="20" IsExpanded="True">
+                <StackPanel>
+                    <Label Content="Select Affected System" FontWeight="SemiBold"/>
+                    <ComboBox SelectedItem="{Binding SelectedAffectedSystem}" ItemsSource="{Binding AffectedSystems}" DisplayMemberPath="Name" MinWidth="300"/>
+                    <Label Content="Impact Level" FontWeight="SemiBold"/>
+                    <TextBox Text="{Binding SelectedAffectedSystem.ImpactLevel}" IsReadOnly="True" MinWidth="300"/>
+                    <Label Content="Status" FontWeight="SemiBold"/>
+                    <TextBox Text="{Binding SelectedAffectedSystem.Status}" IsReadOnly="True" MinWidth="300"/>
+                </StackPanel>
+            </ui:CardExpander>
+
+            <!-- Security Breach Details -->
+            <ui:CardExpander Icon="{ui:SymbolIcon AlertBadge16}" Grid.Row="2" Margin="5" Header="Security Breach Details" FontSize="20" IsExpanded="True">
+                <StackPanel>
+                    <Label Content="Breach Description" FontWeight="SemiBold"/>
+                    <ui:TextBox Text="{Binding BreachDescription}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" MinHeight="100" />
+                    <Label Content="Data Compromised" FontWeight="SemiBold"/>
+                    <ui:TextBox Text="{Binding DataCompromised}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" MinHeight="100" />
+                    <!-- Additional controls or details as needed -->
+                </StackPanel>
+            </ui:CardExpander>
+
+
+
+            <!-- Detection and Analysis -->
+
+
+            <!-- Containment, Eradication, and Recovery -->
+
+            <!-- Post-Incident Actions -->
+            <ui:CardExpander Icon="{ui:SymbolIcon CalendarReply16 }" Grid.Row="5" Margin="5" Header="Post-Incident Actions" FontSize="20" IsExpanded="True">
+                <WrapPanel>
+                    <ui:Button Content="{Binding ButtonTestText}" Appearance="Success" MinHeight="50" Icon="{ui:SymbolIcon Checkmark12}" Command="{Binding TestCommand}"  />
+                </WrapPanel>
+            </ui:CardExpander>
+
+            <!-- Controls for Incident Reporting -->
+            <WrapPanel Grid.Row="6" Margin="0,10,0,0" HorizontalAlignment="Center" MinWidth="450">
+                <ui:CardControl  Icon="{ui:SymbolIcon Print16}" Background="LightBlue" Height="75" Width="200" Margin="10" HorizontalContentAlignment="Center" Content="Print Incident" Command="{Binding PrintIncidentCommand}"  />
+                <ui:CardControl Icon="{ui:SymbolIcon Save16}" Background="LightGreen" Height="75" Width="200" Margin="10" HorizontalContentAlignment="Center" Content="Save Incident" Command="{Binding SaveIncidentCommand}" />
+                <ui:CardControl Icon="{ui:SymbolIcon MailCheckmark16}" Background="#FFFFD200" Height="75"  Margin="10" HorizontalContentAlignment="Center" Content="Save Incident and Send Email" Command="{Binding SaveIncidentAndSendEmailCommand}" />
+            </WrapPanel>
+        </Grid>
+    </ui:DynamicScrollViewer>
+</Page>

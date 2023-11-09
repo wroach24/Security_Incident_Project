@@ -13,6 +13,7 @@ using Wpf.Ui.Controls;
 using Application = System.Windows.Application;
 using Wpf.Ui.Contracts;
 using System.Diagnostics;
+using Security_Response_Program.Models;
 using Security_Response_Program.Services;
 
 namespace Security_Response_Program.ViewModels
@@ -39,23 +40,17 @@ namespace Security_Response_Program.ViewModels
 
         public async void OnNavigatedTo()
         {
-            // Get the directory where the executable is located.
-            var exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            // Build the path to the database file within that directory.
-            var dbPath = System.IO.Path.Combine(exeDirectory, "IncidentDatabase.db");
-            // Create the connection string.
-            var connectionString = $"Data Source={dbPath};Version=3;";
 
             try
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var context = new IncidentDbContext())
                 {
-                    await connection.OpenAsync();
-
-                    System.Windows.MessageBox.Show("Connection Successful");
-                    await connection.CloseAsync();
+                    // Create the database if it doesn't exist.
+                    if (await context.Database.CanConnectAsync())
+                    {
+                       await _snackbarMessageService.ShowSuccessSnackbar("Database accessed successfully.");
+                    }
                 }
-
                 // Connection successful
                 // Proceed with any other operations you need to perform on navigation.
             }

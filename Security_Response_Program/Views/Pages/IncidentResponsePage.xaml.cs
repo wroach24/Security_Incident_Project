@@ -12,16 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Security_Response_Program.ViewModels;
+using Wpf.Ui.Controls;
 
 namespace Security_Response_Program.Views.Pages
 {
     /// <summary>
     /// Interaction logic for SamplePage.xaml
     /// </summary>
-    public partial class IncidentResponsePage : Page
-    {
-        public IncidentResponsePage()
+    public partial class IncidentResponsePage : INavigableView<IncidentResponseViewModel>
+    { 
+        public IncidentResponseViewModel ViewModel { get; }
+
+        public IncidentResponsePage(IncidentResponseViewModel viewModel)
         {
+            ViewModel = viewModel;
+            DataContext = ViewModel;
             InitializeComponent();
         }
     }

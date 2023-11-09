@@ -98,6 +98,8 @@ namespace Security_Response_Program
             services.AddScoped<HomePageViewModel>();
             services.AddScoped<HomePage>();
             services.AddScoped<IncidentResponsePage>();
+            services.AddScoped<IncidentResponseViewModel>();
+            services.AddScoped<IncidentResponsePage>();
 
 
         }
