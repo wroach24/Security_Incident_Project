@@ -58,7 +58,6 @@ public partial class IncidentDbContext : DbContext
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("DATETIME");
-            entity.Property(e => e.LastLoginDate).HasColumnType("DATETIME");
         });
 
         OnModelCreatingPartial(modelBuilder);

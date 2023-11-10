@@ -58,7 +58,7 @@ namespace Security_Response_Program.ViewModels
                         Content = "NIST",
                         Tag = "home",
                         Icon = new SymbolIcon(SymbolRegular.DocumentOnePage20),
-                        TargetPageType = typeof(Views.Pages.MainPage)
+                        TargetPageType = typeof(Views.Pages.LoginPage)
                         },
                     new NavigationViewItem()
                     {

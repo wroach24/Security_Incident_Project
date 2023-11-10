@@ -25,12 +25,17 @@ namespace Security_Response_Program.Services
         /// <param name="password">The password of the user to authenticate.</param>
         /// <returns>True if the user was successfully authenticated, otherwise false.</returns>
         Task<bool> Login(string username, string password);
+
+        // logged in user
+        User? CurrentUser { get; set; }
     }
 
     public class UserService : IUserService
     {
         private readonly IncidentDbContext _context;
         private readonly IPasswordHashingService _hashingService;
+
+        public User? CurrentUser { get; set; } = null;
 
         public UserService(IncidentDbContext context, IPasswordHashingService hashingService)
         {
@@ -60,6 +65,8 @@ namespace Security_Response_Program.Services
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+            // set the current user to the newly created user
+            CurrentUser = user;
             return true;
         }
 
@@ -77,7 +84,14 @@ namespace Security_Response_Program.Services
                 return false;
             }
 
-            return _hashingService.VerifyPassword(password, user.PasswordHash, user.PasswordSalt);
+            var isValid = _hashingService.VerifyPassword(password, user.PasswordHash, user.PasswordSalt);
+            // set the current user to the authenticated user
+            if (isValid)
+            {
+                CurrentUser = user;
+                return true;
+            }
+            return false;
         }
 
     }

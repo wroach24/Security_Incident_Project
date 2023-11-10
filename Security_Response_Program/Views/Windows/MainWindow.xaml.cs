@@ -33,7 +33,7 @@ namespace Security_Response_Program.Views.Windows
             contentDialogService.SetContentPresenter(RootContentDialog);
             snackbarService.SetSnackbarPresenter(SnackbarPresenter);
             NavigationView.SetServiceProvider(serviceProvider);
-            NavigationView.Loaded += (_, _) => NavigationView.Navigate(typeof(MainPage));
+            NavigationView.Loaded += (_, _) => NavigationView.Navigate(typeof(LoginPage));
         }
 
         public MainWindowViewModel ViewModel { get; }
@@ -44,7 +44,7 @@ namespace Security_Response_Program.Views.Windows
                 return;
 
             NavigationView.HeaderVisibility =
-                navigationView.SelectedItem?.TargetPageType != typeof(MainPage)
+                navigationView.SelectedItem?.TargetPageType != typeof(LoginPage)
                     ? Visibility.Visible
                     : Visibility.Collapsed;
         }

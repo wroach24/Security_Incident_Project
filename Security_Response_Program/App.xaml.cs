@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using Security_Response_Program.Models;
 using Security_Response_Program.Services;
 using Security_Response_Program.Services.ApplicationServices;
 using Security_Response_Program.ViewModels;
@@ -79,29 +80,34 @@ namespace Security_Response_Program
             // App Host
             services.AddHostedService<ApplicationHostService>();
 
+            // Database Context Creator
+            services.AddDbContextFactory<IncidentDbContext>();
+
             // Theme manipulation
             services.AddSingleton<IThemeService, ThemeService>();
 
             services.AddSingleton<ISnackbarService, SnackbarService>();
             services.AddSingleton<ISnackbarMessageService, SnackbarMessageService>();
             services.AddSingleton<IContentDialogService, ContentDialogService>();
+            services.AddScoped<IPasswordHashingService, PasswordHashingService>();
+            services.AddSingleton<IUserService ,UserService>();
 
             // Service containing navigation, same as INavigationService... but without window
             services.AddSingleton<INavigationService, Wpf.Ui.Services.NavigationService>();
 
-            // Main window with navigation
-            services.AddScoped<FluentWindow, Views.Windows.MainWindow>();
-            services.AddScoped<ViewModels.MainWindowViewModel>();
 
             // Views and ViewModels
-            services.AddScoped<MainPage>();
-            services.AddScoped<HomePageViewModel>();
+            services.AddScoped<LoginPage>();
+            services.AddScoped<LoginPageViewModel>();
             services.AddScoped<HomePage>();
             services.AddScoped<IncidentResponsePage>();
             services.AddScoped<IncidentResponseViewModel>();
             services.AddScoped<IncidentResponsePage>();
 
 
+            // Main window with navigation
+            services.AddScoped<FluentWindow, Views.Windows.MainWindow>();
+            services.AddScoped<ViewModels.MainWindowViewModel>();
         }
 
        

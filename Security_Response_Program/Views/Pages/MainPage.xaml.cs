@@ -38,16 +38,16 @@ namespace Security_Response_Program.Views.Pages
     /// <summary>
     /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class MainPage : INavigableView<HomePageViewModel>
+    public partial class LoginPage : INavigableView<LoginPageViewModel>
     {
-        public MainPage(HomePageViewModel viewModel)
+        public LoginPage(LoginPageViewModel viewModel)
         {
             ViewModel = viewModel;
             DataContext = ViewModel;
             InitializeComponent();
         }
 
-        public HomePageViewModel ViewModel
+        public LoginPageViewModel ViewModel
         {
             get;
         }
