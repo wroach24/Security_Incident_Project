@@ -18,6 +18,8 @@ public partial class IncidentDbContext : DbContext
 
     public virtual DbSet<Incident> Incidents { get; set; }
 
+    public virtual DbSet<System> Systems { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
@@ -35,6 +37,16 @@ public partial class IncidentDbContext : DbContext
             entity.HasIndex(e => e.IncidentId, "IX_Incidents_IncidentID").IsUnique();
 
             entity.Property(e => e.IncidentId).HasColumnName("IncidentID");
+            entity.Property(e => e.Date).HasColumnType("DATETIME");
+
+            entity.HasOne(d => d.AffectedSystemNavigation).WithMany(p => p.Incidents).HasForeignKey(d => d.AffectedSystem);
+        });
+
+        modelBuilder.Entity<System>(entity =>
+        {
+            entity.HasIndex(e => e.SystemId, "IX_Systems_SystemID").IsUnique();
+
+            entity.Property(e => e.SystemId).HasColumnName("SystemID");
         });
 
         OnModelCreatingPartial(modelBuilder);

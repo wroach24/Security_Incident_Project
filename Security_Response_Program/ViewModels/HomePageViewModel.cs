@@ -48,7 +48,7 @@ namespace Security_Response_Program.ViewModels
                     // Create the database if it doesn't exist.
                     if (await context.Database.CanConnectAsync())
                     {
-                       await _snackbarMessageService.ShowSuccessSnackbar("Database accessed successfully.");
+                        await _snackbarMessageService.ShowSuccessSnackbar("Database accessed successfully.");
                     }
                 }
                 // Connection successful
