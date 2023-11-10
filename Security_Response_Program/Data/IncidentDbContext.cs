@@ -20,6 +20,8 @@ public partial class IncidentDbContext : DbContext
 
     public virtual DbSet<System> Systems { get; set; }
 
+    public virtual DbSet<User> Users { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
@@ -47,6 +49,16 @@ public partial class IncidentDbContext : DbContext
             entity.HasIndex(e => e.SystemId, "IX_Systems_SystemID").IsUnique();
 
             entity.Property(e => e.SystemId).HasColumnName("SystemID");
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasIndex(e => e.Username, "IX_Users_Username").IsUnique();
+
+            entity.Property(e => e.CreatedDate)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("DATETIME");
+            entity.Property(e => e.LastLoginDate).HasColumnType("DATETIME");
         });
 
         OnModelCreatingPartial(modelBuilder);
