@@ -14,12 +14,12 @@
     ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
     Background="{DynamicResource ApplicationBackgroundBrush}"
     ExtendsContentIntoTitleBar="True"
-    WindowBackdropType="None"
+    WindowBackdropType="Mica"
     WindowCornerPreference="Default"
     WindowStartupLocation="CenterScreen"
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
     mc:Ignorable="d">
-    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource ApplicationBackgroundBrush}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
@@ -27,6 +27,7 @@
         <ui:TitleBar
             x:Name="TitleBar"
             Title="{Binding ViewModel.ApplicationTitle}"
+            Background="{DynamicResource ApplicationBackgroundBrush}"
             Grid.Row="0"
             CloseWindowByDoubleClickOnIcon="True">
             <ui:TitleBar.Icon>
@@ -47,6 +48,7 @@
             PaneTitle="Pages"
             PaneDisplayMode="Left"
             IsPaneOpen="True"
+            IsPaneVisible="False"
             SelectionChanged="OnNavigationSelectionChanged"
             TitleBar="{Binding ElementName=TitleBar, Mode=OneWay}">
             <ui:NavigationView.ContentOverlay>
@@ -56,10 +58,11 @@
             </ui:NavigationView.ContentOverlay>
         </ui:NavigationView>
 
-        <ScrollContentPresenter    x:Name="RootContentDialog" >
+        <ScrollContentPresenter    x:Name="RootContentDialog"  >
             <ScrollContentPresenter.Resources>
             <Style TargetType="ScrollContentPresenter">
                 <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible"/>
+                <Setter Property="ScrollViewer.Background" Value="Blue"></Setter>
             </Style>
         </ScrollContentPresenter.Resources>
         </ScrollContentPresenter>

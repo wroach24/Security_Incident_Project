@@ -36,7 +36,7 @@ using LicenseContext = OfficeOpenXml.LicenseContext;
 namespace Security_Response_Program.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for MainPage.xaml
+    /// Interaction logic for LoginPage.xaml
     /// </summary>
     public partial class LoginPage : INavigableView<LoginPageViewModel>
     {
@@ -50,6 +50,12 @@ namespace Security_Response_Program.Views.Pages
         public LoginPageViewModel ViewModel
         {
             get;
+        }
+
+        private void PasswordBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+            ViewModel.Password = PasswordBox.Password;
         }
     }
 }

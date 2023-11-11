@@ -19,10 +19,10 @@ namespace Security_Response_Program.ViewModels
         private readonly ISnackbarMessageService _snackbarMessageService;
 
         [ObservableProperty]
-        private string _username;
+        private string? _username;
 
         [ObservableProperty]
-        private string _password;
+        private string? _password;
 
         public LoginPageViewModel(IUserService userService, INavigationService navigationService, ISnackbarMessageService snackbarMessageService)
         {
@@ -32,7 +32,7 @@ namespace Security_Response_Program.ViewModels
         }
 
         [RelayCommand]
-        private async void Login()
+        private async Task Login()
         {
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
@@ -59,13 +59,27 @@ namespace Security_Response_Program.ViewModels
             }
         }
 
+        [RelayCommand]
+        private async Task SignUp()
+        {
+            _navigationService.Navigate(typeof(SignUpPage));
+        }
         public void OnNavigatedTo()
         {
             // if the user is already logged in, navigate to the main page
-            if ( _userService.CurrentUser != null)
+            if (_userService.CurrentUser != null)
             {
                 _navigationService.Navigate(typeof(IncidentResponsePage));
             }
+            else
+            {
+                _navigationService.GetNavigationControl().IsPaneVisible = false;
+            }
+            App.Current.Dispatcher .Invoke(() =>
+            {
+                _navigationService.GetNavigationControl().IsPaneOpen = false;
+            });
+
         }
 
         public void OnNavigatedFrom()

@@ -55,10 +55,11 @@ namespace Security_Response_Program.ViewModels
                 new NavigationViewItemSeparator(),
                 new NavigationViewItem()
                         {
-                        Content = "NIST",
+                        Content = "Log In",
                         Tag = "home",
                         Icon = new SymbolIcon(SymbolRegular.DocumentOnePage20),
-                        TargetPageType = typeof(Views.Pages.LoginPage)
+                        TargetPageType = typeof(Views.Pages.LoginPage),
+                        Visibility = Visibility.Collapsed
                         },
                     new NavigationViewItem()
                     {

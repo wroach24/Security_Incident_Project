@@ -97,12 +97,15 @@ namespace Security_Response_Program
 
 
             // Views and ViewModels
+            services.AddScoped<SignUpPage>();
+            services.AddScoped<SignUpPageViewModel>();
             services.AddScoped<LoginPage>();
             services.AddScoped<LoginPageViewModel>();
             services.AddScoped<HomePage>();
             services.AddScoped<IncidentResponsePage>();
             services.AddScoped<IncidentResponseViewModel>();
             services.AddScoped<IncidentResponsePage>();
+    
 
 
             // Main window with navigation
