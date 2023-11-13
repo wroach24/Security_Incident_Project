@@ -21,5 +21,11 @@ public partial class Incident
 
     public long? AffectedSystemId { get; set; }
 
+    public string? IncidentResponder { get; set; }
+
+    public string? BreachDescription { get; set; }
+
+    public string? DataCompromised { get; set; }
+
     public virtual System? AffectedSystem { get; set; }
 }

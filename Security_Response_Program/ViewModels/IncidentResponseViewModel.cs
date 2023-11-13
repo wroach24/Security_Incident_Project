@@ -39,6 +39,7 @@ namespace Security_Response_Program.ViewModels
             "Critical"
         };
         [ObservableProperty] private string _incidentLocation = string.Empty;
+        [ObservableProperty] private DateTime _incidentDate = DateTime.Now;
         [ObservableProperty] private string _incidentDescription = string.Empty;
         [ObservableProperty] private string _incidentAssignee = string.Empty;
         [ObservableProperty] private string _breachDescription = string.Empty;
@@ -59,34 +60,59 @@ namespace Security_Response_Program.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IUserService _userService;
         private readonly ISnackbarMessageService _snackbarMessageService;
+        private readonly IDatabaseCommands _databaseCommands;
         private readonly PersistedUserSelectionService _persistedUserSelectionService;
-        public IncidentResponseViewModel (INavigationService navigationService, IUserService userService, ISnackbarMessageService snackbarMessageService, PersistedUserSelectionService persistedUserSelectionService)
+        public IncidentResponseViewModel (INavigationService navigationService, IUserService userService, ISnackbarMessageService snackbarMessageService, PersistedUserSelectionService persistedUserSelectionService, IDatabaseCommands databaseCommands)
         {
             _navigationService = navigationService;
             _userService = userService;
             _snackbarMessageService = snackbarMessageService;
             _persistedUserSelectionService = persistedUserSelectionService;
+            _databaseCommands = databaseCommands;
         }
 
 
         [RelayCommand]
         private async Task SubmitChanges()
         {
-            //if (CurrentIncident == null)
-            //{
-            //    var newIncident = new Incident()
-            //    {
-            //        Type = SelectedIncidentType,
-            //        Severity = SelectedIncidentSeverity,
-            //        Location = IncidentLocation,
-            //        Description = IncidentDescription,
-            //        Assignee = IncidentAssignee,
-            //        Status = SelectedIncidentStatus,
-            //        AffectedSystem = SelectedAffectedSystem,
-            //        BreachDescription = BreachDescription,
-            //        DataCompromised = DataCompromised
-            //    };
-            //}
+            if (CurrentIncident == null)
+            {
+                var newIncident = new Incident()
+                {
+                    IncidentType = SelectedIncidentType,
+                    Severity = SelectedIncidentSeverity,
+                    IncidentLocation = IncidentLocation,
+                    Description = IncidentDescription,
+                    IncidentResponder = IncidentAssignee,
+                    Status = SelectedIncidentStatus,
+                    AffectedSystem = SelectedAffectedSystem,
+                    BreachDescription = BreachDescription,
+                    DataCompromised = DataCompromised,
+                };
+                var finalizedIncident = await _databaseCommands.AddOrUpdateIncident(newIncident);
+                CurrentIncident = finalizedIncident;
+            }
+            else
+            {
+                var updatedIncident = new Incident()
+                {
+                    IncidentType = SelectedIncidentType,
+                    Severity = SelectedIncidentSeverity,
+                    IncidentLocation = IncidentLocation,
+                    Description = IncidentDescription,
+                    IncidentResponder = IncidentAssignee,
+                    Status = SelectedIncidentStatus,
+                    AffectedSystem = SelectedAffectedSystem,
+                    BreachDescription = BreachDescription,
+                    DataCompromised = DataCompromised,
+                    IncidentId = CurrentIncident.IncidentId
+                };
+                var finalizedIncident = await _databaseCommands.AddOrUpdateIncident(updatedIncident);
+                CurrentIncident = finalizedIncident;
+            }
+
+            await _snackbarMessageService.ShowSuccessSnackbar("Incident saved successfully.");
+
         }
 
         private void InitializeNewIncident()
@@ -102,6 +128,15 @@ namespace Security_Response_Program.ViewModels
             if (CurrentIncident != null)
             {
                 SelectedIncidentStatus = CurrentIncident.Status;
+                SelectedIncidentType = CurrentIncident.IncidentType;
+                SelectedIncidentSeverity = CurrentIncident.Severity;
+                IncidentLocation = CurrentIncident.IncidentLocation;
+                IncidentDescription = CurrentIncident.Description;
+                IncidentAssignee = CurrentIncident.IncidentResponder;
+                SelectedAffectedSystem = CurrentIncident.AffectedSystem;
+                BreachDescription = CurrentIncident.BreachDescription;
+                DataCompromised = CurrentIncident.DataCompromised;
+
 
             }
         }

@@ -18,7 +18,7 @@ namespace Security_Response_Program.Services
         /// </summary>
         /// <param name="incident">The incident to add or update.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
-        Task<bool> AddOrUpdateIncident(Incident incident);
+        Task<Incident> AddOrUpdateIncident(Incident incident);
 
         /// <summary>
         /// Adds or updates a system in the database.
@@ -69,7 +69,7 @@ namespace Security_Response_Program.Services
         /// </summary>
         /// <param name="incident">The incident to add or update.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
-        public async Task<bool> AddOrUpdateIncident(Incident incident)
+        public async Task<Incident> AddOrUpdateIncident(Incident incident)
         {
             return await ExecuteDbOperation(async context =>
             {
@@ -77,16 +77,18 @@ namespace Security_Response_Program.Services
 
                 if (existingIncident == null)
                 {
-                    context.Incidents.Add(incident);
+                    var newIncident = context.Incidents.Add(incident);
+                    await context.SaveChangesAsync();
+                    return newIncident.Entity;
                 }
                 else
                 {
                     context.Entry(existingIncident).CurrentValues.SetValues(incident);
+                    await context.SaveChangesAsync();
+                    return existingIncident;
                 }
 
-                await context.SaveChangesAsync();
 
-                return true;
             }, "Failed to add or update incident.");
         }
 
