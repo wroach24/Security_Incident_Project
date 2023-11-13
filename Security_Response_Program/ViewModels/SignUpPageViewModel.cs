@@ -37,7 +37,6 @@ namespace Security_Response_Program.ViewModels
         private async Task SignUp()
         {
             if (string.IsNullOrWhiteSpace(Username) ||
-                string.IsNullOrWhiteSpace(Email) ||
                 string.IsNullOrWhiteSpace(Password) ||
                 string.IsNullOrWhiteSpace(ConfirmPassword))
             {

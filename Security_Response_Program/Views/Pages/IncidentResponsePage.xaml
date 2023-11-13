@@ -39,7 +39,7 @@
                     </StackPanel>
                     <StackPanel Margin="10,0,10,10">
                         <Label FontSize="14" Content="Incident Type" FontWeight="SemiBold"/>
-                        <ComboBox SelectedItem="{Binding IncidentType}" ItemsSource="{Binding IncidentTypes}" Height="38" DisplayMemberPath="IncidentType" MinWidth="215" />
+                        <ComboBox SelectedItem="{Binding IncidentType}" ItemsSource="{Binding IncidentTypes}" Height="38" MinWidth="215" />
                     </StackPanel>
                     <StackPanel Margin="10,0,10,10">
                         <Label FontSize="14" Content="Incident Location" FontWeight="SemiBold" />
@@ -51,18 +51,16 @@
                     </StackPanel>
                     <StackPanel Margin="10,0,10,10">
                         <Label FontSize="14" Content="Incident Severity" FontWeight="SemiBold"/>
-                        <ComboBox SelectedItem="{Binding IncidentSeverity}" ItemsSource="{Binding IncidentSeverities}" Height="38" DisplayMemberPath="IncidentSeverity" MinWidth="215" />
+                        <ComboBox SelectedItem="{Binding IncidentSeverity}" ItemsSource="{Binding IncidentSeverities}" Height="38" MinWidth="215" />
                     </StackPanel>
                     <StackPanel Margin="10,0,10,10">
                         <Label FontSize="14" Content="Incident Status" FontWeight="SemiBold"/>
-                        <ComboBox SelectedItem="{Binding IncidentStatus}" ItemsSource="{Binding IncidentStatuses}" Height="38" DisplayMemberPath="IncidentStatus" MinWidth="215" />
+                        <ComboBox Foreground="Black" SelectedItem="{Binding IncidentStatus}" ItemsSource="{Binding IncidentStatuses}" Height="38" MinWidth="215" />
                     </StackPanel>
-                    <StackPanel Margin="10,0,10,10"/>
                     <StackPanel Margin="10,0,10,10">
                         <Label FontSize="14" Content="Incident Assignee" FontWeight="SemiBold"/>
                         <ui:TextBox Text="{Binding IncidentAssignee}" MinWidth="290" />
                     </StackPanel>
-                    <StackPanel Margin="10,0,10,10"/>
                 </WrapPanel>
             </ui:CardExpander>
 

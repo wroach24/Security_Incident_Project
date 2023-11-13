@@ -30,5 +30,15 @@ namespace Security_Response_Program.Views.Pages
         }
 
         public SignUpPageViewModel ViewModel { get; }
+
+        private void PasswordBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ViewModel.Password = PasswordBox.Password;
+        }
+
+        private void ConfirmPasswordBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ViewModel.ConfirmPassword = ConfirmPasswordBox.Password;
+        }
     }
 }

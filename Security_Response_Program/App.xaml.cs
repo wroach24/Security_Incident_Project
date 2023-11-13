@@ -91,6 +91,7 @@ namespace Security_Response_Program
             services.AddSingleton<IContentDialogService, ContentDialogService>();
             services.AddScoped<IPasswordHashingService, PasswordHashingService>();
             services.AddSingleton<IUserService ,UserService>();
+            services.AddSingleton<PersistedUserSelectionService>();
 
             // Service containing navigation, same as INavigationService... but without window
             services.AddSingleton<INavigationService, Wpf.Ui.Services.NavigationService>();

@@ -23,8 +23,8 @@
         <!-- Form Fields -->
         <ui:TextBox x:Name="UsernameTextBox" Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Username" Margin="0 10 0 0"/>
         <ui:TextBox x:Name="EmailTextBox" Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Email" Margin="0 10 0 0"/>
-        <ui:PasswordBox x:Name="PasswordBox"   PlaceholderText="Password" Margin="0 10 0 0"/>
-        <ui:PasswordBox x:Name="ConfirmPasswordBox"  PlaceholderText="Confirm Password" Margin="0 10 0 0"/>
+        <ui:PasswordBox x:Name="PasswordBox" TextChanged="PasswordBox_OnTextChanged"   PlaceholderText="Password" Margin="0 10 0 0"/>
+        <ui:PasswordBox x:Name="ConfirmPasswordBox" TextChanged="ConfirmPasswordBox_OnTextChanged"  PlaceholderText="Confirm Password" Margin="0 10 0 0"/>
 
         <!-- Sign Up Button -->
         <ui:Button Content="Sign Up" Command="{Binding SignUpCommand}" Icon="{ui:SymbolIcon Save16}" Appearance="Primary" Foreground="White" Padding="10" FontSize="18" HorizontalAlignment="Stretch" Margin="0 10 0 0"/>

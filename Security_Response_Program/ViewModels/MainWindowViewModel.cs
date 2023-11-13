@@ -14,6 +14,7 @@ using MenuItem = Wpf.Ui.Controls.MenuItem;
 using Thickness = System.Windows.Thickness;
 using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Security_Response_Program.Services;
 
 namespace Security_Response_Program.ViewModels
@@ -23,6 +24,8 @@ namespace Security_Response_Program.ViewModels
         private bool _isInitialized = false;
 
         private readonly ISnackbarMessageService _snackbarMessageService;
+        private readonly INavigationService _navigationService;
+        private readonly IUserService _userService;
         [ObservableProperty]
         private string _applicationTitle = String.Empty;
 
@@ -35,17 +38,39 @@ namespace Security_Response_Program.ViewModels
         [ObservableProperty]
         private ICollection<object> _navigationFooter;
 
+
+
         [ObservableProperty]
         private ObservableCollection<MenuItem> _trayMenuItems = new();
 
-        public MainWindowViewModel(INavigationService navigationService, ISnackbarMessageService snackbarMessageService)
+        public MainWindowViewModel(INavigationService navigationService, ISnackbarMessageService snackbarMessageService, IUserService userService)
         {
             if (!_isInitialized)
                 InitializeViewModel();
+            
             _snackbarMessageService = snackbarMessageService;
+            _navigationService = navigationService;
+            _userService = userService;
 
         }
 
+        [RelayCommand]
+        private async Task NavigateToLogin()
+        {
+            _navigationService.Navigate(typeof(Views.Pages.LoginPage));
+        }
+
+        [RelayCommand]
+        private async Task NavigateToIncidentResponseEntry()
+        {
+            if (_userService.CurrentUser == null)
+            {
+                await _snackbarMessageService.ShowErrorSnackbar("You must be logged in to access this page.");
+                _navigationService.Navigate(typeof(Views.Pages.LoginPage));
+                return;
+            }
+            _navigationService.Navigate(typeof(Views.Pages.IncidentResponsePage));
+        }
         private void InitializeViewModel()
         {
             ApplicationTitle = "Security Incident Response System";
@@ -59,13 +84,16 @@ namespace Security_Response_Program.ViewModels
                         Tag = "home",
                         Icon = new SymbolIcon(SymbolRegular.DocumentOnePage20),
                         TargetPageType = typeof(Views.Pages.LoginPage),
+                        Command = NavigateToLoginCommand,
                         Visibility = Visibility.Collapsed
+
                         },
                     new NavigationViewItem()
                     {
                         Content = "Incident Entry",
                         Tag = "doa",
                         Icon =  new SymbolIcon(SymbolRegular.BookDatabase20),
+                        Command = NavigateToIncidentResponseEntryCommand,
                         TargetPageType = typeof(Views.Pages.IncidentResponsePage)
                     },
                     new NavigationViewItem()

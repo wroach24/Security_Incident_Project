@@ -64,11 +64,12 @@ namespace Security_Response_Program.ViewModels
         {
             _navigationService.Navigate(typeof(SignUpPage));
         }
-        public void OnNavigatedTo()
+        public async void OnNavigatedTo()
         {
             // if the user is already logged in, navigate to the main page
             if (_userService.CurrentUser != null)
             {
+                await _snackbarMessageService.ShowSuccessSnackbar("You are already logged in.");
                 _navigationService.Navigate(typeof(IncidentResponsePage));
             }
             else
