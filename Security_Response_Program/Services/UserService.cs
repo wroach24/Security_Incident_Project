@@ -64,7 +64,15 @@ namespace Security_Response_Program.Services
             };
 
             _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
             // set the current user to the newly created user
             CurrentUser = user;
             return true;
@@ -84,7 +92,7 @@ namespace Security_Response_Program.Services
                 return false;
             }
 
-            var isValid = _hashingService.VerifyPassword(password, user.PasswordHash, user.PasswordSalt);
+            var isValid = _hashingService.VerifyPassword(password, user.PasswordHash, user.PasswordSalt.ToString());
             // set the current user to the authenticated user
             if (isValid)
             {

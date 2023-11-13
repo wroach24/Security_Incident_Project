@@ -39,9 +39,10 @@ public partial class IncidentDbContext : DbContext
             entity.HasIndex(e => e.IncidentId, "IX_Incidents_IncidentID").IsUnique();
 
             entity.Property(e => e.IncidentId).HasColumnName("IncidentID");
+            entity.Property(e => e.AffectedSystemId).HasColumnName("AffectedSystemID");
             entity.Property(e => e.Date).HasColumnType("DATETIME");
 
-            entity.HasOne(d => d.AffectedSystemNavigation).WithMany(p => p.Incidents).HasForeignKey(d => d.AffectedSystem);
+            entity.HasOne(d => d.AffectedSystem).WithMany(p => p.Incidents).HasForeignKey(d => d.AffectedSystemId);
         });
 
         modelBuilder.Entity<System>(entity =>

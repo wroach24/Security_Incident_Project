@@ -66,6 +66,7 @@ namespace Security_Response_Program.ViewModels
             catch (System.Exception ex)
             {
                 await _snackbarMessageService.ShowErrorSnackbar($"An error occurred during sign-up: {ex.Message}");
+                throw;
             }
         }
 

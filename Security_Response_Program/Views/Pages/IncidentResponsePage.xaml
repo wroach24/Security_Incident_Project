@@ -58,7 +58,7 @@
                         <ComboBox Foreground="Black" SelectedItem="{Binding IncidentStatus}" ItemsSource="{Binding IncidentStatuses}" Height="38" MinWidth="215" />
                     </StackPanel>
                     <StackPanel Margin="10,0,10,10">
-                        <Label FontSize="14" Content="Incident Assignee" FontWeight="SemiBold"/>
+                        <Label FontSize="14" Content="Incident Reporter" FontWeight="SemiBold"/>
                         <ui:TextBox Text="{Binding IncidentAssignee}" MinWidth="290" />
                     </StackPanel>
                 </WrapPanel>

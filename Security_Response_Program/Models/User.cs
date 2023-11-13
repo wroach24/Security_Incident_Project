@@ -11,10 +11,9 @@ public partial class User
 
     public string PasswordHash { get; set; } = null!;
 
-    public string PasswordSalt { get; set; } = null!;
+    public string? PasswordSalt { get; set; }
 
     public string? Email { get; set; }
 
     public DateTime? CreatedDate { get; set; } = null!;
-
 }

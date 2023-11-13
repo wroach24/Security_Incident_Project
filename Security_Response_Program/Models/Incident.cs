@@ -9,13 +9,17 @@ public partial class Incident
 
     public byte[]? Date { get; set; }
 
+    public string? IncidentType { get; set; }
+
     public string? Severity { get; set; }
 
     public string? Status { get; set; }
 
     public string? Description { get; set; }
 
-    public long? AffectedSystem { get; set; }
+    public string? IncidentLocation { get; set; }
 
-    public virtual System? AffectedSystemNavigation { get; set; }
+    public long? AffectedSystemId { get; set; }
+
+    public virtual System? AffectedSystem { get; set; }
 }
