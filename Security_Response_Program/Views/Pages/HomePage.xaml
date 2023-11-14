@@ -1,0 +1,96 @@
+﻿<Page x:Class="Security_Response_Program.Views.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:Security_Response_Program.Views.Pages"
+      xmlns:viewmodels="clr-namespace:Security_Response_Program.ViewModels"
+      mc:Ignorable="d"
+      Title="Security Incident Response Program" 
+      d:DataContext="{d:DesignInstance viewmodels:HomePageViewModel, IsDesignTimeCreatable=False}"
+      ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+      ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+      Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+      HorizontalAlignment="Stretch" 
+      VerticalAlignment="Stretch" 
+      Margin="0,0">
+
+    <Page.Resources>
+        <!-- Navigation Button Style -->
+        <Style x:Key="NavigationButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="12,5"/>
+            <Setter Property="Background" Value="{DynamicResource AccentColorBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="40"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource AccentMouseOverColorBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Status Bar Item Style -->
+        <Style x:Key="StatusBarItemStyle" TargetType="StatusBarItem">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <!-- Card Expander Style -->
+        <Style BasedOn="{StaticResource {x:Type ui:CardExpander}}" TargetType="ui:CardExpander">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource CardBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+
+        <!-- Frame Style -->
+        <Style x:Key="ContentFrameStyle" TargetType="Frame">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource FrameBorderBrush}"/>
+        </Style>
+
+        <!-- Add other styles as needed -->
+    </Page.Resources>
+
+    <DockPanel LastChildFill="True">
+        <!-- Header -->
+        <ui:TextBlock DockPanel.Dock="Top" VerticalAlignment="Center"
+                      Text="🛡️ Security Incident Response Program" 
+                      Appearance="Primary" 
+                      FontSize="30" 
+                      FontWeight="Bold" 
+                      Margin="10" />
+
+        <!-- Navigation Grid -->
+        <Grid DockPanel.Dock="Top" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+             
+            </Grid.ColumnDefinitions>
+            <ui:Button Icon="{ui:SymbolIcon ShiftsActivity20}" Appearance="Info" MinHeight="75" Content="Current Incidents" HorizontalAlignment="Stretch" Command="{Binding NavigateToActiveIncidentsCommand}" Grid.Column="0"  />
+            <ui:Button Icon="{ui:SymbolIcon Add12}" Appearance="Info" MinHeight="75" Content="Create Incident" Command="{Binding NavigateToCreateIncidentCommand}" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10"  />
+            <ui:Button Icon="{ui:SymbolIcon EditSettings20}" Appearance="Info" HorizontalAlignment="Stretch" MinHeight="75" Content="Manage Systems" Command="{Binding NavigateToSystemManagementCommand}" Grid.Column="2" />
+        </Grid>
+
+        <!-- Main Content Area -->
+            <ui:DataGrid AutoGenerateColumns="True" ItemsSource="{Binding RecentIncidents}">
+
+            </ui:DataGrid>
+    </DockPanel>
+</Page>

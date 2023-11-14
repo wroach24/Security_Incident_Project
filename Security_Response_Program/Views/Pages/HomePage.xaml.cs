@@ -12,16 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Security_Response_Program.ViewModels;
+using Wpf.Ui.Controls;
 
 namespace Security_Response_Program.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for SamplePage2.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class HomePage : INavigableView<HomePageViewModel>
     {
-        public HomePage()
+        public HomePageViewModel ViewModel { get; }
+
+        public HomePage(HomePageViewModel viewModel)
         {
+            ViewModel = viewModel;
+            DataContext = ViewModel;
             InitializeComponent();
         }
     }

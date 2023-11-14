@@ -81,6 +81,18 @@ namespace Security_Response_Program.ViewModels
                 return;
             }
             _navigationService.Navigate(typeof(Views.Pages.PastIncidentPage));
+            }
+    
+        [RelayCommand]
+        private async Task NavigateToHomePage()
+        {
+            if (_userService.CurrentUser == null)
+            {
+                await _snackbarMessageService.ShowErrorSnackbar("You must be logged in to access this page.");
+                _navigationService.Navigate(typeof(Views.Pages.LoginPage));
+                return;
+            }
+            _navigationService.Navigate(typeof(Views.Pages.HomePage));
         }
         private void InitializeViewModel()
         {
@@ -89,6 +101,16 @@ namespace Security_Response_Program.ViewModels
             NavigationItems = new ObservableCollection<object>
             {
                 new NavigationViewItemSeparator(),
+                new NavigationViewItem()
+                {
+                    Content = "Home",
+                    Tag = "home1",
+                    Icon = new SymbolIcon(SymbolRegular.Home12),
+                    TargetPageType = typeof(Views.Pages.HomePage),
+                    Command = NavigateToHomePageCommand,
+                    Visibility = Visibility.Visible
+
+                },
                 new NavigationViewItem()
                         {
                         Content = "Log In",

@@ -104,6 +104,7 @@ namespace Security_Response_Program
             services.AddScoped<LoginPage>();
             services.AddScoped<LoginPageViewModel>();
             services.AddScoped<HomePage>();
+            services.AddScoped<HomePageViewModel>();
             services.AddScoped<IncidentResponsePage>();
             services.AddScoped<IncidentResponseViewModel>();
             services.AddScoped<IncidentResponsePage>();
