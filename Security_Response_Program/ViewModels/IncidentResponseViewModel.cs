@@ -79,6 +79,7 @@ namespace Security_Response_Program.ViewModels
                     AffectedSystem = SelectedAffectedSystem,
                     BreachDescription = BreachDescription,
                     DataCompromised = DataCompromised,
+                    Date = IncidentDate
                 };
                 var finalizedIncident = await _databaseCommands.AddOrUpdateIncident(newIncident);
                 CurrentIncident = finalizedIncident;
@@ -96,7 +97,8 @@ namespace Security_Response_Program.ViewModels
                     AffectedSystem = SelectedAffectedSystem,
                     BreachDescription = BreachDescription,
                     DataCompromised = DataCompromised,
-                    IncidentId = CurrentIncident.IncidentId
+                    IncidentId = CurrentIncident.IncidentId,
+                    Date = IncidentDate
                 };
                 var finalizedIncident = await _databaseCommands.AddOrUpdateIncident(updatedIncident);
                 CurrentIncident = finalizedIncident;
@@ -144,6 +146,7 @@ namespace Security_Response_Program.ViewModels
                 SelectedAffectedSystem = CurrentIncident.AffectedSystem;
                 BreachDescription = CurrentIncident.BreachDescription;
                 DataCompromised = CurrentIncident.DataCompromised;
+                IncidentDate = CurrentIncident.Date.GetValueOrDefault();
             }
         }
 
