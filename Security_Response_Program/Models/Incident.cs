@@ -7,7 +7,7 @@ public partial class Incident
 {
     public long IncidentId { get; set; }
 
-    public byte[]? Date { get; set; }
+    public DateTime? Date { get; set; }
 
     public string? IncidentType { get; set; }
 

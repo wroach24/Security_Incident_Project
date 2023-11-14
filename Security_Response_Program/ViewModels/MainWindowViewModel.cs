@@ -71,6 +71,17 @@ namespace Security_Response_Program.ViewModels
             }
             _navigationService.Navigate(typeof(Views.Pages.IncidentResponsePage));
         }
+        [RelayCommand]
+        private async Task NavigateToPastIncidents()
+        {
+            if (_userService.CurrentUser == null)
+            {
+                await _snackbarMessageService.ShowErrorSnackbar("You must be logged in to access this page.");
+                _navigationService.Navigate(typeof(Views.Pages.LoginPage));
+                return;
+            }
+            _navigationService.Navigate(typeof(Views.Pages.PastIncidentPage));
+        }
         private void InitializeViewModel()
         {
             ApplicationTitle = "Security Incident Response System";
@@ -101,7 +112,7 @@ namespace Security_Response_Program.ViewModels
                         Content = "Past Incidents",
                         Tag = "search",
                         Icon =  new SymbolIcon(SymbolRegular.Search28),
-                        TargetPageType = typeof(Views.Pages.HomePage)
+                        TargetPageType = typeof(Views.Pages.PastIncidentPage)
                     },
 
                     //new NavigationViewItem()

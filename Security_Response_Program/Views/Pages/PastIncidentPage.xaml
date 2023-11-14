@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Security_Response_Program.Views.Pages"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:viewModels="clr-namespace:Security_Response_Program.ViewModels"
-      Title="PastIncidentPage"  d:DesignHeight="450"
+      xmlns:models="clr-namespace:Security_Response_Program.Models"
+      Title="PastIncidentPage" d:DesignHeight="450"
       d:DesignWidth="800"
       d:DataContext="{d:DesignInstance viewModels:PastIncidentViewModel,
                                      IsDesignTimeCreatable=False}"
@@ -16,23 +17,208 @@
       ScrollViewer.CanContentScroll="False"
       mc:Ignorable="d">
 
-    <Grid>
-        <!--<ui:VirtualizingItemsControl
-            ItemsSource="{Binding DataContext.Incidents, Mode=OneWay}"
-            VirtualizingPanel.CacheLengthUnit="Item">
-            <ItemsControl.ItemTemplate>
-                --><!--<DataTemplate DataType="{x:Type models:Incident}">
-                    <ui:CardExpander Margin="5" Padding="10" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" CornerRadius="5">
-                        <StackPanel>
-                            <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="16" />
-                            <TextBlock Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" FontStyle="Italic" Opacity="0.7" />
-                            <TextBlock Text="{Binding Description}" MaxHeight="60" TextTrimming="WordEllipsis" />
-                            <TextBlock Text="{Binding Severity}" />
-                            --><!-- Additional incident details here --><!--
+    <ui:DynamicScrollViewer>
+        <StackPanel>
+
+            <!-- Page Title -->
+            <ui:TextBlock Text="Security Incidents" 
+                       FontWeight="Bold" 
+                       FontSize="24" 
+                       Margin="10" 
+                       HorizontalAlignment="Center"/>
+            <!-- Critical Incidents (P1) -->
+            <ui:CardExpander Foreground="Red" Margin="50,0" >
+                <ui:CardExpander.Header>
+                        <!-- Header Content -->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="🚨" FontSize="24" />
+                            <TextBlock Text="Critical Incidents (P1)" FontWeight="Bold" FontSize="20" Margin="10,0" />
                         </StackPanel>
-                    </ui:CardExpander>
-                </DataTemplate>--><!--
-            </ItemsControl.ItemTemplate>
-        </ui:VirtualizingItemsControl>-->
-    </Grid>
+                    </ui:CardExpander.Header>
+
+                        <ui:VirtualizingItemsControl
+ItemsSource="{Binding Incidents, Mode=OneWay}"
+VirtualizingPanel.CacheLengthUnit="Item">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:Incident}">
+                            <!-- Redesigned Card for Critical Incidents -->
+                            <ui:CardExpander IsExpanded="True" Margin="5" Padding="10" 
+                         Background="#FFD1D1" BorderBrush="#FF0000" 
+                         BorderThickness="1" CornerRadius="5">
+                                <StackPanel>
+                                    <TextBlock Text="Incident ID: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentId}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Date: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}" Margin="5,0,0,5" FontStyle="Italic" Opacity="0.7" />
+
+                                    <TextBlock Text="Incident Type: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentType}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Severity: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Severity}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Status: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Status}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Responder: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentResponder}" Margin="5,0,0,5" />
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                        <ui:Button Appearance="Primary" Content="Update Incident" Margin="0,0,5,0"/>
+                                        <ui:Button Appearance="Danger" Content="Remove Incident" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </ui:CardExpander>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ui:VirtualizingItemsControl>
+            </ui:CardExpander>
+          
+
+            <!-- High Incidents (P2) -->
+            <ui:CardExpander Icon="{ui:SymbolIcon AlertBadge16, Filled=True}" Foreground="DarkOrange" Margin="50,10,50,0" >
+                <ui:CardExpander.Header>
+                    <!-- Header Content -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="High Priority Incidents (P2)" FontWeight="Bold" FontSize="20"  />
+                    </StackPanel>
+                </ui:CardExpander.Header>
+
+                <ui:VirtualizingItemsControl
+ItemsSource="{Binding Incidents, Mode=OneWay}"
+VirtualizingPanel.CacheLengthUnit="Item">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:Incident}">
+                            <!-- Redesigned Card for Critical Incidents -->
+                            <ui:CardExpander IsExpanded="True" Margin="5" Padding="10" 
+                         Background="DarkOrange" BorderBrush="DarkOrange" 
+                         BorderThickness="1" CornerRadius="5">
+                                <StackPanel>
+                                    <TextBlock Text="Incident ID: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentId}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Date: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}" Margin="5,0,0,5" FontStyle="Italic" Opacity="0.7" />
+
+                                    <TextBlock Text="Incident Type: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentType}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Severity: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Severity}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Status: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Status}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Responder: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentResponder}" Margin="5,0,0,5" />
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                        <ui:Button Appearance="Primary" Content="Update Incident" Margin="0,0,5,0"/>
+                                        <ui:Button Appearance="Danger" Content="Remove Incident" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </ui:CardExpander>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ui:VirtualizingItemsControl>
+            </ui:CardExpander>
+
+            <!-- VirtualizingItemsControl for High Incidents -->
+
+            <!-- Medium Incidents (P3) -->
+            <ui:CardExpander Icon="{ui:SymbolIcon Alert48, Filled=True}" Foreground="Goldenrod" Margin="50,10,50,0" >
+                <ui:CardExpander.Header>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="Medium Priority Incidents (P3)" FontWeight="Bold" FontSize="20"/>
+                    </StackPanel>
+                </ui:CardExpander.Header>
+
+                <ui:VirtualizingItemsControl
+ItemsSource="{Binding Incidents, Mode=OneWay}"
+VirtualizingPanel.CacheLengthUnit="Item">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:Incident}">
+                            <!-- Redesigned Card for Critical Incidents -->
+                            <ui:CardExpander IsExpanded="True" Margin="5" Padding="10" 
+                         Background="Goldenrod" BorderBrush="Goldenrod" 
+                         BorderThickness="1" CornerRadius="5">
+                                <StackPanel>
+                                    <TextBlock Text="Incident ID: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentId}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Date: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}" Margin="5,0,0,5" FontStyle="Italic" Opacity="0.7" />
+
+                                    <TextBlock Text="Incident Type: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentType}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Severity: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Severity}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Status: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Status}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Responder: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentResponder}" Margin="5,0,0,5" />
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                        <ui:Button Appearance="Primary" Content="Update Incident" Margin="0,0,5,0"/>
+                                        <ui:Button Appearance="Danger" Content="Remove Incident" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </ui:CardExpander>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ui:VirtualizingItemsControl>
+            </ui:CardExpander>
+            <!-- Medium Incidents (P3) -->
+            <ui:CardExpander Icon="{ui:SymbolIcon Alert48, Filled=True}" Foreground="Green" Margin="50,10,50,0" >
+                <ui:CardExpander.Header>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="Low Priority Incidents (P3)" FontWeight="Bold" FontSize="20" />
+                    </StackPanel>
+                </ui:CardExpander.Header>
+
+                <ui:VirtualizingItemsControl
+ItemsSource="{Binding Incidents, Mode=OneWay}"
+VirtualizingPanel.CacheLengthUnit="Item">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:Incident}">
+                            <!-- Redesigned Card for Critical Incidents -->
+                            <ui:CardExpander IsExpanded="True" Margin="5" Padding="10" 
+                         Background="LightGoldenrodYellow" BorderBrush="LightGoldenrodYellow" 
+                         BorderThickness="1" CornerRadius="5">
+                                <StackPanel>
+                                    <TextBlock Text="Incident ID: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentId}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Date: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}" Margin="5,0,0,5" FontStyle="Italic" Opacity="0.7" />
+
+                                    <TextBlock Text="Incident Type: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentType}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Severity: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Severity}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Status: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Status}" Margin="5,0,0,5" />
+
+                                    <TextBlock Text="Responder: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding IncidentResponder}" Margin="5,0,0,5" />
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                        <ui:Button Appearance="Primary" Content="Update Incident" Margin="0,0,5,0"/>
+                                        <ui:Button Appearance="Danger" Content="Remove Incident" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </ui:CardExpander>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ui:VirtualizingItemsControl>
+            </ui:CardExpander>
+
+        </StackPanel>
+    </ui:DynamicScrollViewer>
 </Page>

@@ -107,6 +107,8 @@ namespace Security_Response_Program
             services.AddScoped<IncidentResponsePage>();
             services.AddScoped<IncidentResponseViewModel>();
             services.AddScoped<IncidentResponsePage>();
+            services.AddScoped<PastIncidentPage>();
+            services.AddScoped<PastIncidentViewModel>();
 
     
 
